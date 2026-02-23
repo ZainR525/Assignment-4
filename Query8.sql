@@ -1,10 +1,6 @@
-SELECT 
-    playlists.PlaylistId,
-    playlists.Name,
-    ROUND(SUM(tracks.Milliseconds) / 3600000.0, 2) AS LengthInHours
-FROM playlists
-JOIN playlist_track ON playlists.PlaylistId = playlist_track.PlaylistId
-JOIN tracks ON playlist_track.TrackId = tracks.TrackId
-GROUP BY playlists.PlaylistId, playlists.Name
+SELECT p.PlaylistId, p.Name, ROUND(SUM(t.Milliseconds) / 3600000.0, 2) AS LengthInHours
+FROM playlists p, playlist_track pt, tracks t
+WHERE p.PlaylistId = pt.PlaylistId
+AND pt.TrackId = t.TrackId
+GROUP BY p.PlaylistId, p.Name
 HAVING LengthInHours > 2;
-
