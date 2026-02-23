@@ -1,4 +1,5 @@
-SELECT albums.Title, artists.Name
-FROM albums
-JOIN artists ON albums.ArtistId = artists.ArtistId
-WHERE albums.Title IS NOT NULL AND artists.Name IS NOT NULL;
+SELECT al.Title, ar.Name
+FROM albums al, artists ar
+WHERE al.ArtistId = ar.ArtistId
+AND al.Title IS NOT NULL
+AND ar.Name IS NOT NULL;
