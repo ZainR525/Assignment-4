@@ -1,9 +1,9 @@
-SELECT DISTINCT artists.Name
-FROM artists
-JOIN albums ON artists.ArtistId = albums.ArtistId
-JOIN tracks ON albums.AlbumId = tracks.AlbumId
-JOIN media_types ON tracks.MediaTypeId = media_types.MediaTypeId
-JOIN playlist_track ON tracks.TrackId = playlist_track.TrackId
-JOIN playlists ON playlist_track.PlaylistId = playlists.PlaylistId
-WHERE media_types.Name LIKE '%MPEG%'
-  AND playlists.Name IN ('Brazilian Music', 'Grunge');
+SELECT DISTINCT ar.Name
+FROM artists ar, albums al, tracks t, media_types mt, playlist_track pt, playlists p
+WHERE ar.ArtistId = al.ArtistId
+AND al.AlbumId = t.AlbumId
+AND t.MediaTypeId = mt.MediaTypeId
+AND t.TrackId = pt.TrackId
+AND pt.PlaylistId = p.PlaylistId
+AND mt.Name LIKE '%MPEG%'
+AND p.Name IN ('Brazilian Music', 'Grunge');
