@@ -1,4 +1,4 @@
-SELECT DISTINCT artists.Name
-FROM artists
-JOIN albums ON artists.ArtistId = albums.ArtistId
-WHERE LOWER(albums.Title) LIKE '%symphony%';
+SELECT DISTINCT ar.Name
+FROM artists ar, albums al
+WHERE ar.ArtistId = al.ArtistId
+AND al.Title LIKE '%symphony%';
